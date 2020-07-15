@@ -47,7 +47,7 @@ if len(orderResponse.CertificateChain) > 0 {
 }
 
 // Download the certificate(s) for an order.
-certList, err := client.DownloadCertificateForOrder("36066061", cc.CertificateFormats.PEMAll)
+certList, err := client.DownloadCertificateForOrder("123456", cc.CertificateFormats.PEMAll)
 handlerError(err)
 for _, cert := range certList {
   fmt.Println(cert.Subject.CommonName)
