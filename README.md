@@ -38,7 +38,7 @@ handleError(err)
 
 // If auto-approval is allowed the response contains the full chain of certificates in PEM format. 
 if len(orderResponse.CertificateChain) > 0 {
-  crtChain, err := DecodeCertificateChain()
+  crtChain, err := orderResponse.DecodeCertificateChain()
   handleError(err)
 
   for _, crt := range crtChain {
