@@ -21,11 +21,19 @@ func (o OrderType) String() string {
 var OrderTypes = struct {
 	SSLPlus,
 	PrivateSSLPlus,
-	PrivateSSLWildcard OrderType
+	PrivateSSLWildcard,
+	SecureSiteProSSL,
+	SecureSiteOV,
+	SecureSiteProEVSSL,
+	SecureSiteEV OrderType
 }{
 	"ssl_plus",
 	"private_ssl_plus",
 	"private_ssl_wildcard",
+	"ssl_securesite_pro",
+	"ssl_securesite_flex",
+	"ssl_ev_securesite_pro",
+	"ssl_ev_securesite_flex",
 }
 
 type PaymentMethod string
