@@ -90,6 +90,10 @@ type (
 		Pem               string `json:"pem"`
 	}
 
+	ChainIntermediates struct {
+		Intermediates []CertificateChain `json:"intermediates"`
+	}
+
 	CertificateRevokeResponse struct {
 		ID        int        `json:"id"`
 		Date      *time.Time `json:"date,omitempty"`
@@ -188,7 +192,7 @@ func (c *Client) GetCertificateChain(certID string) ([]CertificateChain, error) 
 		return nil, errors.New("cannot get certificate chain without certificate ID")
 	}
 
-	req, err := http.NewRequest(http.MethodGet, makeURL("certificate", certID, "chain"), nil)
+	req, err := http.NewRequest(http.MethodGet, makeURL(certificateURL, certID, "chain"), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -204,7 +208,7 @@ func (c *Client) GetCertificateChain(certID string) ([]CertificateChain, error) 
 		return nil, err
 	}
 
-	var chain []CertificateChain
-	err = json.Unmarshal(resBody, &chain)
-	return chain, err
+	var i ChainIntermediates
+	err = json.Unmarshal(resBody, &i)
+	return i.Intermediates, err
 }
