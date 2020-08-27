@@ -182,3 +182,29 @@ func (c *Client) RevokeCertificate(certificateID string) (*CertificateRevokeResp
 	err = json.Unmarshal(resBody, &r)
 	return &r, err
 }
+
+func (c *Client) GetCertificateChain(certID string) ([]CertificateChain, error) {
+	if certID == "" {
+		return nil, errors.New("cannot get certificate chain without certificate ID")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, makeURL("certificate", certID, "chain"), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	resBody, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var chain []CertificateChain
+	err = json.Unmarshal(resBody, &chain)
+	return chain, err
+}
