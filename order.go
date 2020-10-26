@@ -77,6 +77,7 @@ type (
 		Domains                     []Domain           `json:"domains,omitempty"`
 		CertificateID               int                `json:"certificate_id,omitempty"`
 		CertificateChain            []CertificateChain `json:"certificate_chain,omitempty"`
+		Container                   *Container         `json:"container,omitempty"`
 	}
 
 	OrderRequest struct {
