@@ -3,10 +3,11 @@ go-certcentral
 
 GoLang client for the [DigiCert cert-central services API](https://dev.digicert.com/services-api).
 
+
 # Usage
 
 ```go
-import certcentral "github.com/sapcc/go-certcentral"
+import cc "github.com/sapcc/go-certcentral"
 
 client, err := cc.New(&cc.Options{
   Token: "DIGICERT_API_TOKEN",
@@ -20,7 +21,7 @@ orderResponse, err := cli.SubmitOrder(
     Certificate: cc.Certificate{
       CommonName:     csr.Subject.CommonName,
       DNSNames:       csr.DNSNames,
-      CSR:            csrPEM,
+      CSR:            csr.PEM,
       ServerPlatform: cc.ServerPlatformForType(cc.ServerPlatformTypes.Nginx),
       SignatureHash:  cc.SignatureHashes.SHA256,
       CaCertID:       "CACertID",
@@ -54,3 +55,4 @@ for _, cert := range certList {
 }
 
 ```
+

@@ -20,6 +20,8 @@ func (o OrderType) String() string {
 
 var OrderTypes = struct {
 	SSLPlus,
+	SSLMultiDomain,
+	SSLWildcard,
 	PrivateSSLPlus,
 	PrivateSSLWildcard,
 	SecureSiteProSSL,
@@ -28,6 +30,8 @@ var OrderTypes = struct {
 	SecureSiteEV OrderType
 }{
 	"ssl_plus",
+	"ssl_multi_domain",
+	"ssl_wildcard",
 	"private_ssl_plus",
 	"private_ssl_wildcard",
 	"ssl_securesite_pro",
