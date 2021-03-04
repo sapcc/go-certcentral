@@ -1,3 +1,3 @@
-module github.com/sapcc/go-certcentral
+module github.com/sfc-gh-bcollins/go-certcentral
 
 go 1.13
