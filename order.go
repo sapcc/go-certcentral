@@ -82,6 +82,7 @@ type (
 		CertificateID               int                `json:"certificate_id,omitempty"`
 		CertificateChain            []CertificateChain `json:"certificate_chain,omitempty"`
 		Container                   *Container         `json:"container,omitempty"`
+		Status                      Status             `json:"status,omitempty"`
 	}
 
 	OrderRequest struct {
