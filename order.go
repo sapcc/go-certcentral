@@ -12,6 +12,8 @@ import (
 
 const orderURL = "/order/certificate/"
 
+const noteURL = "/note"
+
 type OrderType string
 
 func (o OrderType) String() string {
@@ -92,6 +94,9 @@ type (
 		Status   Status     `json:"status,omitempty"`
 		Comments string     `json:"comments,omitempty"`
 	}
+	Note struct {
+		Text string `json:"text"`
+	}
 )
 
 func (o Order) DecodeCertificateChain() ([]*x509.Certificate, error) {
@@ -157,4 +162,29 @@ func (c *Client) GetOrder(orderID string) (*Order, error) {
 	var o Order
 	err = json.Unmarshal(resBody, &o)
 	return &o, err
+}
+
+func (c *Client) AddNote(orderID string, note Note) (error) {
+	if orderID == "" {
+		return errors.New("cannot add note without order ID")
+	}
+	if note.Text == "" {
+		return errors.New("cannot add empty note to order")
+	}
+	body, err := json.Marshal(note)
+	if err != nil {
+		return err
+	}
+	req, err := http.NewRequest(http.MethodPost, makeURL(orderURL, orderID, noteURL), bytes.NewReader(body))
+	if err != nil {
+		return err
+	}
+
+	res, err := c.do(req)
+	if err != nil {
+		return err
+	}
+	defer res.Body.Close()
+
+	return err
 }
