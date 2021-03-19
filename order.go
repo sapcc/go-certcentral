@@ -83,6 +83,7 @@ type (
 		Domains                     []Domain           `json:"domains,omitempty"`
 		CertificateID               int                `json:"certificate_id,omitempty"`
 		CertificateChain            []CertificateChain `json:"certificate_chain,omitempty"`
+		CustomFields                []CustomField      `json:"custom_fields,omitempty"`
 		Container                   *Container         `json:"container,omitempty"`
 		Status                      Status             `json:"status,omitempty"`
 	}
@@ -96,6 +97,11 @@ type (
 	}
 	Note struct {
 		Text string `json:"text"`
+	}
+
+	CustomField struct {
+		MetadataID int `json:"metadata_id"`
+		Value      string `json:"value"`
 	}
 )
 
