@@ -62,7 +62,7 @@ type (
 	Order struct {
 		Certificate                 Certificate        `json:"certificate,omitempty"`
 		Organization                *Organization      `json:"organization,omitempty"`
-		ValidityYears               int                `json:"validity_years,omitempty"`
+		OrderValidity               OrderValidity      `json:"order_validity,omitempty"`
 		CustomExpirationDate        string             `json:"custom_expiration_date,omitempty"`
 		Comments                    string             `json:"comments,omitempty"`
 		ProcessorComment            string             `json:"processor_comment,omitempty"`
@@ -90,6 +90,11 @@ type (
 		Type     string     `json:"type,omitempty"`
 		Status   Status     `json:"status,omitempty"`
 		Comments string     `json:"comments,omitempty"`
+	}
+
+	OrderValidity struct {
+		Years int `json:"years,omitempty"`
+		Days  int `json:"days,omitempty"`
 	}
 )
 
