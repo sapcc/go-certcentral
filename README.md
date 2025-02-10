@@ -29,7 +29,7 @@ orderResponse, err := cli.SubmitOrder(
         "SomeOrganization ",
       },
     },
-    ValidityYears:               1,
+    OrderValidity:               cc.OrderValidity{Years: 1},
     DisableRenewalNotifications: true,
     PaymentMethod:               cc.PaymentMethods.Balance,
     SkipApproval:                true,
