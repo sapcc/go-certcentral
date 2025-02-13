@@ -1,6 +1,8 @@
 go-certcentral
 --------------
 
+[![REUSE status](https://api.reuse.software/badge/github.com/sapcc/go-certcentral)](https://api.reuse.software/info/github.com/sapcc/go-certcentral)
+
 GoLang client for the [DigiCert cert-central services API](https://dev.digicert.com/services-api).
 
 
