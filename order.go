@@ -5,7 +5,7 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 )
@@ -63,6 +63,7 @@ type (
 		Certificate                 Certificate        `json:"certificate,omitempty"`
 		Organization                *Organization      `json:"organization,omitempty"`
 		OrderValidity               OrderValidity      `json:"order_validity,omitempty"`
+		ValidityYears               int                `json:"validity_years,omitempty"`
 		CustomExpirationDate        string             `json:"custom_expiration_date,omitempty"`
 		Comments                    string             `json:"comments,omitempty"`
 		ProcessorComment            string             `json:"processor_comment,omitempty"`
@@ -82,6 +83,9 @@ type (
 		CertificateID               int                `json:"certificate_id,omitempty"`
 		CertificateChain            []CertificateChain `json:"certificate_chain,omitempty"`
 		Container                   *Container         `json:"container,omitempty"`
+		DateCreated                 time.Time          `json:"date_created,omitempty"`
+		Status                      string             `json:"status,omitempty"`
+		OrderOptions                string             `json:"order_options,omitempty"`
 	}
 
 	OrderRequest struct {
@@ -127,7 +131,7 @@ func (c *Client) SubmitOrder(order Order, orderType OrderType) (*Order, error) {
 	}
 	defer res.Body.Close()
 
-	body, err = ioutil.ReadAll(res.Body)
+	body, err = io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +157,7 @@ func (c *Client) GetOrder(orderID string) (*Order, error) {
 	}
 	defer res.Body.Close()
 
-	resBody, err := ioutil.ReadAll(res.Body)
+	resBody, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
