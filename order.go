@@ -84,6 +84,7 @@ type (
 		Domains                     []Domain           `json:"domains,omitempty"`
 		CertificateID               int                `json:"certificate_id,omitempty"`
 		CertificateChain            []CertificateChain `json:"certificate_chain,omitempty"`
+		CertificateDCVScope         string             `json:"certificate_dcv_scope,omitempty"`
 		Container                   *Container         `json:"container,omitempty"`
 		DateCreated                 time.Time          `json:"date_created,omitempty"`
 		Status                      string             `json:"status,omitempty"`
